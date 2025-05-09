@@ -3,15 +3,12 @@ import { Button } from '@/components/ui/button';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      <video
-        className="absolute inset-0 w-full h-full object-cover"
-        autoPlay
-        muted
-        loop
-        playsInline
-        src="https://www.youtube.com/embed/pXQ90_RJc-U"
-      />
+    <section className="relative min-h-screen flex items-center overflow-hidden" 
+             style={{ 
+               backgroundImage: "url('https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080')", 
+               backgroundSize: 'cover', 
+               backgroundPosition: 'center' 
+             }}>
       <div className="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
       <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-background/50"></div>
       
@@ -22,11 +19,9 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
           className="max-w-3xl"
         >
-          <img 
-            src="/attached_assets/LOGO.png" 
-            alt="Vish VFX" 
-            className="w-64 md:w-96 glow-text"
-          />
+          <h1 className="text-5xl md:text-7xl font-inter font-bold leading-tight glow-text">
+            Vish <span className="text-primary">VFX</span>
+          </h1>
           <p className="mt-4 text-xl md:text-2xl text-gray-200">Crafting stories through cuts & color</p>
           <div className="mt-8 flex flex-wrap gap-4">
             <a href="#featured">
