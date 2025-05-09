@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import VideoModal from './VideoModal';
 import { videos } from '@/lib/data';
 
 export default function FeaturedReels() {
   const [activeVideo, setActiveVideo] = useState<null | {id: string, title: string}>(null);
+  const videoRefs = useRef<(HTMLIFrameElement | null)[]>([]);
 
   const container = {
     hidden: { opacity: 0 },
@@ -61,28 +62,35 @@ export default function FeaturedReels() {
           viewport={{ once: true, amount: 0.2 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {videos.map((video) => (
+          {videos.map((video, index) => (
             <motion.div 
               key={video.id}
               variants={item}
-              className="video-card group relative rounded-xl overflow-hidden border border-primary/30 shadow-lg bg-secondary cursor-pointer"
-              onClick={() => setActiveVideo({id: video.id, title: video.title})}
+              className="video-card group relative rounded-xl overflow-hidden border border-primary/30 shadow-lg bg-secondary"
             >
               <div className="relative aspect-video overflow-hidden">
-                <img 
-                  src={video.thumbnail} 
-                  alt={`${video.title} thumbnail`} 
-                  className="w-full h-full object-cover brightness-75 transition-all duration-500 group-hover:scale-105 group-hover:brightness-90"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-background/40"></div>
+                <iframe 
+                  ref={el => videoRefs.current[index] = el}
+                  src={`https://www.youtube.com/embed/${video.id}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&modestbranding=1&playlist=${video.id}`}
+                  title={video.title}
+                  className="w-full h-full absolute inset-0"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
                 
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="play-icon w-16 h-16 flex items-center justify-center rounded-full bg-primary/80 text-white transition-all duration-300 opacity-80">
-                    <i className="fas fa-play text-lg"></i>
-                  </span>
-                </div>
-                <div className="absolute top-3 right-3">
-                  <span className="bg-background/80 text-white text-sm py-1 px-3 rounded-full">Click to play</span>
+                <div 
+                  className="absolute inset-0 bg-gradient-to-t from-background/90 to-background/40 cursor-pointer"
+                  onClick={() => setActiveVideo({id: video.id, title: video.title})}
+                >
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="play-icon w-16 h-16 flex items-center justify-center rounded-full bg-primary/80 text-white transition-all duration-300 opacity-80">
+                      <i className="fas fa-play text-lg"></i>
+                    </span>
+                  </div>
+                  <div className="absolute top-3 right-3">
+                    <span className="bg-background/80 text-white text-sm py-1 px-3 rounded-full">Click to play</span>
+                  </div>
                 </div>
               </div>
               

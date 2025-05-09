@@ -1,18 +1,31 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import { useRef } from 'react';
 
 export default function Hero() {
+  const videoRef = useRef<HTMLIFrameElement>(null);
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden" 
-             style={{ 
-               backgroundImage: "url('https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080')", 
-               backgroundSize: 'cover', 
-               backgroundPosition: 'center' 
-             }}>
-      <div className="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-background/50"></div>
+    <section className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Background Video */}
+      <div className="absolute inset-0 bg-background/40 pointer-events-none" style={{ zIndex: 0 }}>
+        <div className="absolute inset-0 overflow-hidden">
+          <iframe 
+            ref={videoRef}
+            className="absolute w-full h-full object-cover"
+            src="https://www.youtube.com/embed/pXQ90_RJc-U?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&modestbranding=1&playlist=pXQ90_RJc-U"
+            title="Background Video"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
+      </div>
       
-      <div className="container mx-auto px-4 md:px-8 relative z-10">
+      <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" style={{ zIndex: 1 }}></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-background/50" style={{ zIndex: 2 }}></div>
+      
+      <div className="container mx-auto px-4 md:px-8 relative" style={{ zIndex: 10 }}>
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -38,7 +51,7 @@ export default function Hero() {
         </motion.div>
       </div>
       
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-background to-transparent"></div>
+      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-background to-transparent" style={{ zIndex: 3 }}></div>
     </section>
   );
 }
