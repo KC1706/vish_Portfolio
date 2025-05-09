@@ -69,9 +69,12 @@ export default function FeaturedReels() {
               onClick={() => setActiveVideo({id: video.id, title: video.title})}
             >
               <div className="relative aspect-video overflow-hidden">
-                <img 
-                  src={video.thumbnail} 
-                  alt={`${video.title} thumbnail`} 
+                <video
+                  src={video.thumbnail}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
                   className="w-full h-full object-cover brightness-75 transition-all duration-500 group-hover:scale-105 group-hover:brightness-90"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-background/40"></div>

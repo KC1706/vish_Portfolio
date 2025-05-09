@@ -74,7 +74,7 @@ export default function About() {
                   <i className="fas fa-play mr-2"></i> Watch Featured
                 </Button>
               </a>
-              <a href="#featured">
+              <a href="https://drive.google.com/drive/folders/1rGwR8SHWl2Q3cBF6AcoXOk7DSlpkphFy?usp=drive_link" target="_blank" rel="noopener noreferrer">
                 <Button variant="secondary" className="bg-background/40 hover:bg-background/60 transition-all duration-300 rounded-full">
                   <i className="fas fa-film mr-2"></i> More Works
                 </Button>
