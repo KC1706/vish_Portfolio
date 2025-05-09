@@ -83,14 +83,6 @@ export default function FeaturedReels() {
                   className="absolute inset-0 bg-gradient-to-t from-background/90 to-background/40 cursor-pointer"
                   onClick={() => setActiveVideo({id: video.id, title: video.title})}
                 >
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="play-icon w-16 h-16 flex items-center justify-center rounded-full bg-primary/80 text-white transition-all duration-300 opacity-80">
-                      <i className="fas fa-play text-lg"></i>
-                    </span>
-                  </div>
-                  <div className="absolute top-3 right-3">
-                    <span className="bg-background/80 text-white text-sm py-1 px-3 rounded-full">Click to play</span>
-                  </div>
                 </div>
               </div>
               
